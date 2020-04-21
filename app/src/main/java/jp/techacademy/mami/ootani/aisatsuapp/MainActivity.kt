@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when(v.id) {
+        when (v.id) {
             R.id.button1 -> showTimePickerDialog()
         }
     }
@@ -38,14 +38,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val alertDialogBuilder = AlertDialog.Builder(this)
         alertDialogBuilder.setMessage("あいさつ")
 
-        val num= ("$hour:$minute")
+       when ("hour:minute") {
 
-        if(2:00 <= num < 10:00) {
-           Log.d("UI_PARTS", "おはよう")
-        } else if(10:00 <= num < 18:00) {
-            Log.d("UI_PARTS", "こんにちは")
-        } else if(18:00 <= num < 20:00) {
-            Log.d("UI_PARTS", "こんばんは")
+             ("2:00 <= num < 10:00") ->  {
+                Log.d("UI_PARTS", "おはよう")
+            }
+           ("10:00 <= num < 18:00")  -> {
+                Log.d("UI_PARTS", "こんにちは")
+            }
+           ("18:00 <= num < 20:00") -> {
+                Log.d("UI_PARTS", "こんばんは")
+            }
         }
-
     }
+}
