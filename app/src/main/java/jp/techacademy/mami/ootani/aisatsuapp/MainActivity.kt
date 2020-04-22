@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         button1.setOnClickListener(this)
-        textView.text = AlertDialog()
     }
 
     override fun onClick(v: View) {
@@ -30,26 +29,28 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             TimePickerDialog.OnTimeSetListener { view, hour, minute ->
                 Log.d("UI_PARTS", "$hour:$minute")
             },
-            13, 0, true
-        )
-        timePickerDialog.show()
-    }
+            13, 0, true)
+            timePickerDialog.show()
 
-    private fun AlertDialog() {
-        val alertDialog = AlertDialog.Builder(this)
+        fun setText(s: String) {
+            when ("hour:minute") {
 
-        when ("hour:minute") {
+                ("2:00 <= \"hour:minute\" < 10:00") ->  {
+                    Log.d("UI_PARTS", "おはよう")
+                    setText ("おはよう")
+                }
+                ("10:00 <= \"hour:minute\" < 18:00")  -> {
+                    Log.d("UI_PARTS", "こんにちは")
+                    setText ("こんにちは")
+                }
+                ("18:00 <= \"hour:minute\" < 24:00 || 0:00 <= \"hour:minute\" < 02:00") -> {
+                    Log.d("UI_PARTS", "こんばんは")
+                    setText ("こんばんは")
+                }
+            }
 
-             ("2:00 <= num < 10:00") ->  {
-                 Log.d("UI_PARTS", "おはよう")
-            }
-           ("10:00 <= num < 18:00")  -> {
-                 Log.d("UI_PARTS", "こんにちは")
-            }
-           ("18:00 <= num < 20:00") -> {
-                 Log.d("UI_PARTS", "こんばんは")
-            }
         }
+
 
     }
 }
