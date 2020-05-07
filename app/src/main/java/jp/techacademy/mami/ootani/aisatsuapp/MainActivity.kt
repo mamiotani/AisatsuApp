@@ -2,7 +2,6 @@ package jp.techacademy.mami.ootani.aisatsuapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,9 +17,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View) {
-        when (v.id) {
-            R.id.button1 -> showTimePickerDialog()
+        if (v.id == R.id.button1) {
+            showTimePickerDialog()
+            Log.d("UI_PARTS", "ボタンをタップしました")
         }
+        //textと式を記述する場所(仮)
     }
 
     private fun showTimePickerDialog() {
@@ -29,28 +30,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             TimePickerDialog.OnTimeSetListener { view, hour, minute ->
                 Log.d("UI_PARTS", "$hour:$minute")
             },
-            13, 0, true)
-            timePickerDialog.show()
+            2, 0, true)
 
-        fun setText(s: String) {
-            when ("hour:minute") {
+        //記述する場所
+        //案3
+        val hourOfDay = Log.d("UI_PARTS", "$:$")
 
-                ("2:00 <= \"hour:minute\" < 10:00") ->  {
-                    Log.d("UI_PARTS", "おはよう")
-                    setText ("おはよう")
-                }
-                ("10:00 <= \"hour:minute\" < 18:00")  -> {
-                    Log.d("UI_PARTS", "こんにちは")
-                    setText ("こんにちは")
-                }
-                ("18:00 <= \"hour:minute\" < 24:00 || 0:00 <= \"hour:minute\" < 02:00") -> {
-                    Log.d("UI_PARTS", "こんばんは")
-                    setText ("こんばんは")
-                }
-            }
-
+        if (2 <= hourOfDay && hourOfDay <= 9) {
+            textview.text = "おはよう"
+            Log.d("textview", "おはよう")
+        } else if (10 <= hourOfDay && hourOfDay <= 17) {
+            textview.text = "こんにちは"
+            Log.d("textview", "こんにちは")
+        } else if (18 <= hourOfDay && hourOfDay <= 23) {
+            textview.text = "こんばんは"
+            Log.d("textview", "こんにちは")
+        } else if (0 <= hourOfDay && hourOfDay <= 1) {
+            textview.text = "こんばんは"
+            Log.d("textview", "こんばんは")
         }
-
+        timePickerDialog.show()
 
     }
 }
